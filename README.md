@@ -31,7 +31,7 @@ Or for a single flag:
 imgui.Begin("Test Window", true, "ImGuiWindowFlags_AlwaysAutoResize");
 ```
 
-It uses imgui 1.73 and is based on LÖVE 11.1.
+It uses imgui 1.75 (as a submodule) and is based on LÖVE 11.1.
 
 ## Getting Started
 
@@ -58,8 +58,10 @@ local textValue = "text"
 -- LOVE callbacks
 --
 function love.load(arg)
+    -- I added Init as a function to better setup styles
     imgui.Init()
 
+    -- Hope you like synthwave...
     imgui.SetStyleColorV4(imgui.ImGuiCol_TabActive, 0.00, 0.44, 1.00, 1.00)
     imgui.SetStyleColorV4(imgui.ImGuiCol_TabHovered, 0.26, 0.42, 0.98, 0.80)
     imgui.SetStyleColorV4(imgui.ImGuiCol_Tab, 0.00, 0.07, 0.79, 0.86)
@@ -98,28 +100,31 @@ function love.load(arg)
     imgui.SetStyleColorV4(imgui.ImGuiCol_Text, 0.00, 0.95, 1.00, 1.00)
     imgui.SetStyleColorV4(imgui.ImGuiCol_TextSelectedBg, 0.14, 0.16, 0.00, 1.00)
 
-    imgui.SetStyleValue("WindowRounding", 0);
-    imgui.SetStyleValue("WindowBorderSize", 1.5);
-    imgui.SetStyleValue("ChildRounding", 0);
-    imgui.SetStyleValue("ChildBorderSize", 1.5);
-    imgui.SetStyleValue("PopupRounding", 0);
-    imgui.SetStyleValue("PopupBorderSize", 1.5);
-    imgui.SetStyleValue("FrameRounding", 0);
-    imgui.SetStyleValue("FrameBorderSize", 0.5);
-    imgui.SetStyleValue("ScrollbarRounding", 0);
-    imgui.SetStyleValue("GrabRounding", 0);
-    imgui.SetStyleValue("TabRounding", 0);
-    imgui.SetStyleValue("AntiAliasedLines", 1);
-    imgui.SetStyleValue("AntiAliasedFill", 1);
+    --- Style name is not case sensitive... pretty extra.
+    --- A y argument can be added optionally
+    --- imguiDirs are converted from integers to enum.
+    imgui.SetStyleValue("windowRounding", 0);
+    imgui.SetStyleValue("windowBorderSize", 1.5);
+    imgui.SetStyleValue("childRounding", 0);
+    imgui.SetStyleValue("childBorderSize", 1.5);
+    imgui.SetStyleValue("popupRounding", 0);
+    imgui.SetStyleValue("popupBorderSize", 1.5);
+    imgui.SetStyleValue("frameRounding", 0);
+    imgui.SetStyleValue("frameBorderSize", 0.5);
+    imgui.SetStyleValue("scrollbarRounding", 0);
+    imgui.SetStyleValue("grabRounding", 0);
+    imgui.SetStyleValue("tabRounding", 0);
+    imgui.SetStyleValue("antiAliasedLines", 1); --- Boolean
+    imgui.SetStyleValue("antiAliasedFill", 1);
 end
 
 function love.update(dt)
+    -- Connect a controller or check before running the next line... else it will crash.
     imgui.UseGamepad(1)
     imgui.NewFrame()
 end
 
 function love.draw()
-
     -- Menu
     if imgui.BeginMainMenuBar() then
         if imgui.BeginMenu("File") then
