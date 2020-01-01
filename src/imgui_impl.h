@@ -1,9 +1,9 @@
 // Lua
 extern "C" {
-#define LUA_COMPAT_ALL
-#include <lua.h>
-#include <lualib.h>
-#include <lauxlib.h>
+  #define LUA_COMPAT_ALL
+  #include <lauxlib.h>
+  #include <lua.h>
+  #include <lualib.h>
 }
 
 bool Init(lua_State *L);
@@ -21,6 +21,11 @@ void TextInput(const char *text);
 bool GetWantCaptureMouse();
 bool GetWantCaptureKeyboard();
 bool GetWantTextInput();
+void UseGamepad(unsigned int index);
 // Fonts
-void SetGlobalFontFromFileTTF(const char *path, float size_pixels,
-        float spacing_x, float spacing_y, float oversample_x, float oversample_y);
+void SetGlobalFontFromFileTTF(const char *path, float size_pixels, float spacing_x, float spacing_y, float oversample_x,
+															float oversample_y);
+
+void SetStyleColorU32(unsigned int idx, unsigned int col);
+void SetStyleColorV4(unsigned int idx, float col[4]);
+void SetStyleValue(const char* name, float x, float y = 0.0);
