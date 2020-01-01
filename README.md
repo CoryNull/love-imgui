@@ -49,9 +49,11 @@ local textValue = "text"
 -- LOVE callbacks
 --
 function love.load(arg)
+    imgui.Init()
 end
 
 function love.update(dt)
+    imgui.UseGamepad(1)
     imgui.NewFrame()
 end
 
