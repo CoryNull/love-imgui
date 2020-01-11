@@ -367,8 +367,8 @@ void UseGamepad(unsigned int index) {
 			+ "navs[" + std::to_string(ImGuiNavInput_TweakFast) + "] = joystick:isGamepadDown('rightshoulder') and 1 or 0\n"
 			/* Axis */
 			+ "navs[" + std::to_string(ImGuiNavInput_LStickLeft) + "] = math.max(joystick:getGamepadAxis('leftx'), 0)\n"
-			+ "navs[" + std::to_string(ImGuiNavInput_LStickRight) + "] = math.min(joystick:getGamepadAxis('leftx'), 0)\n"
-			+ "navs[" + std::to_string(ImGuiNavInput_LStickUp) + "] = math.min(joystick:getGamepadAxis('lefty'), 0)\n"
+			+ "navs[" + std::to_string(ImGuiNavInput_LStickRight) + "] = math.abs(math.min(joystick:getGamepadAxis('leftx'),0))\n"
+			+ "navs[" + std::to_string(ImGuiNavInput_LStickUp) + "] = math.abs(math.min(joystick:getGamepadAxis('lefty'),0))\n"
 			+ "navs[" + std::to_string(ImGuiNavInput_LStickDown) + "] = math.max(joystick:getGamepadAxis('lefty'), 0)\n"
 		+ "else\n"
 			+ "error('Gamepad index out of bounds')\n"
